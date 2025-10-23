@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Recall Trainer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" data-theme="light">
+    <header class="controls" aria-label="Session controls">
+      <div class="control-group">
+        <label for="digitsInput">Digits to memorize</label>
+        <input id="digitsInput" type="number" min="2" max="20" value="6" />
+      </div>
+      <div class="control-group">
+        <label for="showTimeInput">Show time (s)</label>
+        <input id="showTimeInput" type="number" min="1" max="10" value="3" />
+      </div>
+      <div class="control-group">
+        <label for="pauseTimeInput">Pause before answer (s)</label>
+        <input id="pauseTimeInput" type="number" min="0" max="5" value="1" />
+      </div>
+      <div class="control-group">
+        <label for="roundsInput">Rounds in session</label>
+        <input id="roundsInput" type="number" min="1" max="20" value="5" />
+      </div>
+      <div class="control-group checkbox">
+        <input id="leadingZeroInput" type="checkbox" />
+        <label for="leadingZeroInput">Allow leading zero</label>
+      </div>
+      <div class="control-group checkbox">
+        <input id="soundInput" type="checkbox" checked />
+        <label for="soundInput">Sound on feedback</label>
+      </div>
+      <div class="control-group checkbox">
+        <input id="themeToggle" type="checkbox" />
+        <label for="themeToggle">Dark mode</label>
+      </div>
+      <button id="startButton" class="primary">Start session (S)</button>
+    </header>
+
+    <section class="status" aria-live="polite">
+      <div id="roundStatus">Round: 0 / 0</div>
+      <div id="scoreStatus">Score: 0</div>
+      <div id="streakStatus">Streak: 0 | Best: 0</div>
+    </section>
+
+    <main class="stage" aria-live="polite">
+      <div id="stageContent" class="stage-content" role="status">Ready to begin</div>
+    </main>
+
+    <section id="inputArea" class="input-area" hidden>
+      <label for="answerInput" id="answerLabel">Enter the number</label>
+      <input id="answerInput" type="text" inputmode="numeric" autocomplete="one-time-code" aria-labelledby="answerLabel" />
+      <div class="hint" id="inputHint"></div>
+    </section>
+
+    <section id="feedbackArea" class="feedback" hidden aria-live="polite"></section>
+
+    <section id="summary" class="summary" hidden aria-live="polite">
+      <h2>Session summary</h2>
+      <p id="summaryRounds"></p>
+      <p id="summaryCorrect"></p>
+      <p id="summaryPercent"></p>
+      <p id="summaryStreak"></p>
+      <button id="restartButton" class="primary">Restart (R)</button>
+    </section>
+  </div>
+
+  <div class="debug-tools" id="debugTools" hidden>
+    <h3>Debug tools</h3>
+    <button data-debug="correct">Show debug correct</button>
+    <button data-debug="wrong">Show debug wrong</button>
+  </div>
+
+  <audio id="successSound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRpQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YVAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA=" type="audio/wav" />
+  </audio>
+  <audio id="errorSound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRoQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YUgAAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA=" type="audio/wav" />
+  </audio>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
